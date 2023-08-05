@@ -22,9 +22,12 @@ jobs:
           aws-region: ap-northeast-1
 
       - name: Dump instances
-        run: mkdir -p instances && aws ec2 describe-instances > instances/data.json
+        run: aws ec2 describe-instances > instances.json
       - name: Dump security groups
-        run: mkdir -p security_groups && aws ec2 describe-security-groups > security_groups/data.json
+        run: aws ec2 describe-security-groups > security_groups.json
+      - name: Merge json
+        run: |-
+          jq -n '{instances: input, security_groups: input}' instances.json security_groups.json > input.json
       - uses: docker://openpolicyagent/opa:0.55.0
         with:
-          args: "eval -f pretty -b ./ --fail-defined data.ex6.failed"
+          args: "eval -f pretty -I input.json -b ./ --fail-defined data.ex6.failed"
