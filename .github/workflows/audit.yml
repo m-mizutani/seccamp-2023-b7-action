@@ -7,7 +7,7 @@ on:
   # - cron:  '30 5,17 * * *'
 
 jobs:
-  list-instances:
+  check:
     runs-on: ubuntu-latest
 
     steps:
