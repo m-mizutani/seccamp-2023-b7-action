@@ -1,7 +1,6 @@
 package ex6
 
 failed[msg] {
-    print(input)
-    false
-    msg := "this is a sample policy"
+    input.this_is_debug
+    msg := "This is debug"
 }
