@@ -1,6 +1,11 @@
 package ex6
 
+violated {
+    count(failed) > 0
+    print(failed)
+}
+
 failed[msg] {
-    input.this_is_debug
-    msg := "This is debug"
+    # 次の行を消して、ルールを記述してください
+    msg := input.always_failed
 }
