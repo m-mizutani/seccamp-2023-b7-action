@@ -30,4 +30,4 @@ jobs:
           jq -n '{instances: input, security_groups: input}' instances.json security_groups.json > input.json
       - uses: docker://openpolicyagent/opa:0.55.0
         with:
-          args: "eval -f pretty -I input.json -b ./ --fail-defined data.ex6.failed"
+          args: "eval -f pretty -i input.json -b ./ --fail-defined data.ex6.failed"
